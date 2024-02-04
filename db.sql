@@ -1,0 +1,1 @@
+create table events(id int primary key auto_increment, title varchar(255) not null, start_data timestamp default now(), end_ate timestamp not null, bg_color varchar(32) default '#fffff', border_color varchar(32) default '#000000', every_day int(1) default 0 after border_color,created_at timestamp default now(), updated_at timestamp default now());
