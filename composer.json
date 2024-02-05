@@ -1,0 +1,15 @@
+{
+    "require": {
+        "larapack/dd": "^1.1",
+        "illuminate/database": "^10.15",
+        "phpoption/phpoption": "^1.9",
+        "vlucas/phpdotenv": "^5.5",
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\"  : "app",
+            "Core\\" : "vendor/core"
+        }
+    }
+}
