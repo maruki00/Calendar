@@ -12,12 +12,14 @@ use Core\Requests\FormRequest;
 use Core\Requests\IRequest;
 use Core\Requests\Request;
 use Core\Router\CurrentRoute;
+use http\Params;
 use JetBrains\PhpStorm\NoReturn;
 use ReflectionMethod;
 
 class App
 {
-    protected static array $routes = [];
+    protected static array $Container   = [];
+    protected static array $routes      = [];
     protected array $data;
     protected static array $params;
     protected static int   $statusCode = 200;
@@ -35,7 +37,10 @@ class App
     }
 
 
-    #[NoReturn] public final function run():void
+    /**
+     * @throws \Exception
+     */
+    public final function run():void
     {
         try{
             $requestUri     = $this->getRequestUri();
@@ -72,7 +77,6 @@ class App
             if(!class_exists($controller) || !method_exists($controller, $action))
             {
                 echo (new ErrorController())->notfound();
-
                 die;
             }
 
