@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Calendar</title>
+  <title>Abdellah Oulahyane | Calendar</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -48,7 +48,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <!-- <img src="" class="img-circle elevation-2" alt="User Image"> -->
         </div>
         <div class="info">
           <a href="#" class="d-block">Abdellah Oulahyane</a>
@@ -64,7 +64,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                <a href="calendar.html" class="nav-link active">
+                <a href="#" class="nav-link active">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                     Events
@@ -183,13 +183,8 @@
     <strong> 4m4z1hg 
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="./plugins/jquery/jquery.min.js"></script>
@@ -202,8 +197,7 @@
 <!-- fullCalendar 2.2.5 -->
 <script src="./plugins/moment/moment.min.js"></script>
 <script src="./plugins/fullcalendar/main.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="./dist/js/demo.js"></script>
+
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -232,7 +226,7 @@
       })
     }
 
-    ini_events($('#external-events div.external-event'))
+    //ini_events($('#external-events div.external-event'))
 
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -246,8 +240,8 @@
     var Draggable = FullCalendar.Draggable;
 
     var containerEl = document.getElementById('external-events');
-    var checkbox = document.getElementById('drop-remove');
-    var calendarEl = document.getElementById('calendar');
+    var checkbox    = document.getElementById('drop-remove');
+    var calendarEl  = document.getElementById('calendar');
 
     // initialize the external events
     // -----------------------------------------------------------------
@@ -273,51 +267,51 @@
       themeSystem: 'bootstrap',
       //Random default events
       events: [
-        {
-          title          : 'All Day Event',
-          start          : new Date(y, m, 1),
-          backgroundColor: '#FFFFFF', //red
-          borderColor    : '#f56954', //red
-          allDay         : true
-        },
-        {
-          title          : 'Long Event',
-          start          : new Date(y, m, d - 5),
-          end            : new Date(y, m, d - 2),
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
-        {
-          title          : 'Meeting',
-          start          : new Date(y, m, d, 10, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7' //Blue
-        },
-        {
-          title          : 'Lunch',
-          start          : new Date(y, m, d, 12, 0),
-          end            : new Date(y, m, d, 14, 0),
-          allDay         : false,
-          backgroundColor: '#00c0ef', //Info (aqua)
-          borderColor    : '#00c0ef' //Info (aqua)
-        },
-        {
-          title          : 'Birthday Party',
-          start          : new Date(y, m, d + 1, 19, 0),
-          end            : new Date(y, m, d + 1, 22, 30),
-          allDay         : false,
-          backgroundColor: '#00a65a', //Success (green)
-          borderColor    : '#00a65a' //Success (green)
-        },
-        {
-          title          : 'Click for Google',
-          start          : new Date(y, m, 28),
-          end            : new Date(y, m, 29),
-          url            : 'https://www.google.com/',
-          backgroundColor: '#3c8dbc', //Primary (light-blue)
-          borderColor    : '#3c8dbc' //Primary (light-blue)
-        }
+        // {
+        //   title          : 'All Day Event',
+        //   start          : new Date(y, m, 1),
+        //   backgroundColor: '#FFFFFF', //red
+        //   borderColor    : '#f56954', //red
+        //   allDay         : true
+        // },
+        // {
+        //   title          : 'Long Event',
+        //   start          : new Date(y, m, d - 5),
+        //   end            : new Date(y, m, d - 2),
+        //   backgroundColor: '#f39c12', //yellow
+        //   borderColor    : '#f39c12' //yellow
+        // },
+        // {
+        //   title          : 'Meeting',
+        //   start          : new Date(y, m, d, 10, 30),
+        //   allDay         : false,
+        //   backgroundColor: '#0073b7', //Blue
+        //   borderColor    : '#0073b7' //Blue
+        // },
+        // {
+        //   title          : 'Lunch',
+        //   start          : new Date(y, m, d, 12, 0),
+        //   end            : new Date(y, m, d, 14, 0),
+        //   allDay         : false,
+        //   backgroundColor: '#00c0ef', //Info (aqua)
+        //   borderColor    : '#00c0ef' //Info (aqua)
+        // },
+        // {
+        //   title          : 'Birthday Party',
+        //   start          : new Date(y, m, d + 1, 19, 0),
+        //   end            : new Date(y, m, d + 1, 22, 30),
+        //   allDay         : false,
+        //   backgroundColor: '#00a65a', //Success (green)
+        //   borderColor    : '#00a65a' //Success (green)
+        // },
+        // {
+        //   title          : 'Click for Google',
+        //   start          : new Date(y, m, 28),
+        //   end            : new Date(y, m, 29),
+        //   url            : 'https://www.google.com/',
+        //   backgroundColor: '#3c8dbc', //Primary (light-blue)
+        //   borderColor    : '#3c8dbc' //Primary (light-blue)
+        // }
       ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
