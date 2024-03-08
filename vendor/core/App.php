@@ -41,21 +41,22 @@ class App
             self::$Container[$key] = new $newObj;
         }
     }
-    public final function bind(string $key, string|callable $value):void
+    public function bind(string $key, string|callable $value):void
     {
         self::$Container[$key] = is_string($value) ? new $value : $value;
     }
 
-    public final static function app(string $key):mixed
+    public static function app(string $key):mixed
     {
         return self::$Container[$key];
     }
 
-    public final function get(string $key):mixed
+    public function getItem(string $key):mixed
     {
         $retObj =  self::$Container[$key] ?? null;
         return match (gettype($retObj)){
-            'string' => new $retObj,
+            'string' => new self::$Container[$retObj] ?? new $retObj ?? null,
+            'object' => $retObj,
             'callable' => $retObj,
             default => null
         };
@@ -119,8 +120,9 @@ class App
                 die;
             }
             $clsReflexion = new \ReflectionClass($currentRoute->getController());
+
             $constructParams = array_map(function($param){
-                return new ($param->getType()->getName()) ?? null;
+                return $this->getItem($param->getType()->getName()) ?? new ($param->getType()->getName()) ?? null;
             }, $clsReflexion->getConstructor()->getParameters());
 
             $controllerCls  =  new $controller(...$constructParams);

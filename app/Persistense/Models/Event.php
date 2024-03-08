@@ -28,7 +28,17 @@ class Event extends Model implements EventEntity
     protected $created_at;
     protected $updated_at;
 
-    public $fillable = [];
+    public $fillable = [
+        'id'          ,
+        'title'       ,
+        'start_data'  ,
+        'end_ate'     ,
+        'bg_color'    ,
+        'border_color',
+        'every_day'   ,
+        'created_at'  ,
+        'updated_at'  ,
+    ];
 
     public function getId(): int
     {

@@ -11,7 +11,7 @@ use Illuminate\Support\ItemNotFoundException;
 class Router extends App
 {
     private static string       $prefix      = '';
-    private static array        $middlewares = [];
+    protected static array      $middlewares = [];
     private static RouteItem    $item;
 
     public static final function middlewares(array $middlewares, callable $callback){
