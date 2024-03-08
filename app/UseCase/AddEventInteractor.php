@@ -10,7 +10,7 @@ use App\Presentation\Requests\MainRequest;
 
 class AddEventInteractor implements AddEventInputPort
 {
-    public function __construct(private readonly )
+    public function __construct(private readonly IEventRepository $repository)
     {
 
     }

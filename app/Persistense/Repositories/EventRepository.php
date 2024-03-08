@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Persistense\Respositories;
+namespace App\Persistense\Repositories;
 
-use App\Domain\Event\Entities\EventEntity;
+
+use App\Domain\Event\Contracts\IEventRepository;
 use App\Persistense\Models\Event;
 
-class EventRepository
+class EventRepository implements IEventRepository
 {
     public final function create(array $attributes):mixed
     {
