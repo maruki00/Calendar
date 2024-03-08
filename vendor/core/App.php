@@ -1,5 +1,11 @@
 <?php
-
+/*
+ * Author : Abdellah Oulahyane
+ *
+ *
+ *
+ *
+ */
 namespace Core;
 
 use Core\Controller\ErrorController;
@@ -12,8 +18,6 @@ use Core\Requests\FormRequest;
 use Core\Requests\IRequest;
 use Core\Requests\Request;
 use Core\Router\CurrentRoute;
-use http\Params;
-use JetBrains\PhpStorm\NoReturn;
 use ReflectionMethod;
 
 class App
