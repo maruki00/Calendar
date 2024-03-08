@@ -18,15 +18,15 @@ class Event extends Model implements EventEntity
 //    private string $updatedAt
 
 
-//id
-//title
-//start_data
-//end_ate
-//bg_color
-//border_color
-//every_day
-//created_at
-//updated_at
+    protected $id;
+    protected $title;
+    protected $start_data;
+    protected $end_ate;
+    protected $bg_color;
+    protected $border_color;
+    protected $every_day;
+    protected $created_at;
+    protected $updated_at;
 
     public $fillable = [];
 
