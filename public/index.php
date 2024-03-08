@@ -10,4 +10,8 @@ ini_set('display_errors',true);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 $app = new App;
-$app->run();
+try {
+    $app->run();
+} catch (Exception $e) {
+    dd('Exception ....');
+}
