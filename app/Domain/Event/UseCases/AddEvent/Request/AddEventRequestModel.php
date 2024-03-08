@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Event\Ports\Request;
+namespace App\Domain\Event\UseCases\AddEvent\Request;
 
-class CreateEventRequestModel
+class AddEventRequestModel
 {
     public function __construct(private readonly array $attributes)
     {}

@@ -6,7 +6,7 @@ use App\Presentation\Middlewares\CoreMiddleware;
 use Core\App;
 
 class Kernel extends App {
-    private static array $Container = [];
+    protected static array $Container = [];
     public static array $middlewares = [
         'cors'  => CoreMiddleware::class,
         'cors1' => CoreMiddleware::class,
@@ -29,5 +29,11 @@ class Kernel extends App {
     public final static function app(string $key):mixed
     {
         return self::$Container[$key];
+    }
+
+    public final static function get(string $key):mixed
+    {
+        $retObj =  self::$Container[$key] ?? null;
+
     }
 }

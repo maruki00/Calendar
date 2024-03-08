@@ -2,20 +2,19 @@
 
 namespace App\UseCase;
 
-use App\Domain\Event\Entities\EventEntity;
-use App\Domain\Event\Ports\Request\AddEventInputPort;
-use App\Domain\Event\Ports\Request\CreateEventRequestModel;
-use App\Persistense\Models\Event;
-use App\Presentation\Requests\MainRequest;
+
+
+use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
+use App\Domain\Event\UseCases\AddEvent\Request\AddEventRequestModel;
 
 class AddEventInteractor implements AddEventInputPort
 {
-    public function __construct(private readonly IEventRepository $repository)
+    public function __construct(private readonly AddEventInputPort $inputPort)
     {
-
+        $this->$inputPort = new AddEventInteractor();
     }
-    public function add(CreateEventRequestModel $model)
+    public function add(AddEventRequestModel $model)
     {
-        Event::create($request->validated());
+        return $this->inputPort->add(new AddEventR)
     }
 }
