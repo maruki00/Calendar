@@ -15,15 +15,11 @@ class MainRequest extends FormRequest
 
     public function validate(): array
     {
-        return [
-            'name' => 'required|'
-        ];
+        return [ ];
     }
 
     public function messages(): array
     {
-        return [
-            'name.required' => 'the name is required'
-        ];
+        return [ ];
     }
 }

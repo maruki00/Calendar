@@ -12,13 +12,12 @@ use Core\Response\Response;
 class EventController extends Controller
 {
 
-    public function __construct(MainRequest $request)
+    public function __construct()
     {
     }
 
-    public final function store(MainException $exceptiojn , int $a, string $b):bool|string
+    public final function store(MainRequest $request):bool|string
     {
-        dd(__FUNCTION__);
-        return Response::json(['result'=> 'blah blah not found'], 200);
+        return Response::json(['result'=> 'blah blah not found'], 500);
     }
 }

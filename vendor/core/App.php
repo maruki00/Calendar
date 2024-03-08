@@ -59,12 +59,7 @@ class App
                 true    => new \ReflectionFunction($currentRoute->getCallback()),
                 default => new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction()),
             };
-            $clsReflexion = new \ReflectionClass($currentRoute->getController());
-            $constructParams = array_map(function($param){
-                dd(new ($param->getType()->getName())());
-                //return (new $param->getType()->getName()) ?? null;
-            }, $clsReflexion->getConstructor()->getParameters());
-            dd($constructParams);
+
             collect($reflection->getParameters())->map(function($parameter) use (&$urlParams, &$request){
                 if(is_subclass_of($parameter->getType()->getName(), FormRequest::class))
                 {
@@ -90,8 +85,12 @@ class App
                 echo (new ErrorController())->notfound();
                 die;
             }
+            $clsReflexion = new \ReflectionClass($currentRoute->getController());
+            $constructParams = array_map(function($param){
+                return new ($param->getType()->getName()) ?? null;
+            }, $clsReflexion->getConstructor()->getParameters());
 
-            $controllerCls  =  new $controller();
+            $controllerCls  =  new $controller(...$constructParams);
             $response       = $controllerCls->{$action}(...$urlParams);
             echo $response;
             die;

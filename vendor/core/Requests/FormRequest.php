@@ -21,7 +21,6 @@ abstract class FormRequest extends Validator implements IRequest
           }
           $this->validators = static::validate();
           $this->messages   = static::messages();
-          dd($this->required('name', $this->data));
     }
 
     public final function validated():array
