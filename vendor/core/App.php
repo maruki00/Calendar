@@ -24,12 +24,44 @@ class App
 {
 
     protected static array $Container   = [];
+    protected static array $middlewares = [];
     protected static array $routes      = [];
     protected array $data;
     protected static array $params;
     protected static int   $statusCode = 200;
 
     public function __construct(){}
+
+    public final function singleton(string $key, string $value, ?array $params=null):void
+    {
+        $obj = self::$Container[$key] ?? null;
+        if(!isset($obj) || !$obj)
+        {
+            $newObj = is_null($params) ? new $value : new $value($params);
+            self::$Container[$key] = new $newObj;
+        }
+    }
+    public final function bind(string $key, string|callable $value):void
+    {
+        self::$Container[$key] = is_string($value) ? new $value : $value;
+    }
+
+    public final static function app(string $key):mixed
+    {
+        return self::$Container[$key];
+    }
+
+    public final function get(string $key):mixed
+    {
+        $retObj =  self::$Container[$key] ?? null;
+        return match (gettype($retObj)){
+            'string' => new $retObj,
+            'callable' => $retObj,
+            default => null
+        };
+    }
+
+
 
     private function getRequestUri():string
     {
