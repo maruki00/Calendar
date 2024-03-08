@@ -22,6 +22,7 @@ use ReflectionMethod;
 
 class App
 {
+
     protected static array $Container   = [];
     protected static array $routes      = [];
     protected array $data;

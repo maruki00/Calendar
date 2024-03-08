@@ -2,12 +2,15 @@
 
 namespace App\Presenter;
 
+use App\Domain\Event\Contracts\IEventRepository;
+use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
+use App\Persistense\Repositories\EventRepository;
 use App\Presentation\Middlewares\CoreMiddleware;
+use App\UseCase\AddEventInteractor;
 use Core\App;
 
 class Kernel extends App {
-    protected static array $Container = [];
-    public static array $middlewares = [
+    protected static array $Container = [];public static array $middlewares = [
         'cors'  => CoreMiddleware::class,
         'cors1' => CoreMiddleware::class,
     ];
@@ -34,6 +37,13 @@ class Kernel extends App {
     public final static function get(string $key):mixed
     {
         $retObj =  self::$Container[$key] ?? null;
-
+        return match (gettype($retObj)){
+            'string' => new $retObj,
+            'callable' => $retObj,
+            default => null
+        };
     }
 }
+
+Kernel::bind(IEventRepository::class, EventRepository::class);
+Kernel::bind(AddEventInputPort::class, AddEventInteractor::class);
