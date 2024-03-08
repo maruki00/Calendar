@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presentation\Requests;
+namespace App\Presenter\Requests;
 
 use Core\Requests\FormRequest;
 

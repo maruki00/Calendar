@@ -1,18 +1,24 @@
 <?php
 
 
-namespace App\Presentation\Controllers;
+namespace App\Presenter\Controllers;
 
-use App\Presentation\Requests\MainRequest as RequestsMainRequest;
+use App\Presenter\Requests\MainRequest;
 use Core\Controller\Controller;
+use Core\Exceptions\MainException;
 use Core\Response\Response;
 
 
 class EventController extends Controller
 {
 
-    public final function __invoke(RequestsMainRequest $request, string $name, int $id)
+    public function __construct(MainRequest $request)
     {
-        return Response::json(['result'=> 'blah blah not found'], 404);
+    }
+
+    public final function store(MainException $exceptiojn , int $a, string $b):bool|string
+    {
+        dd(__FUNCTION__);
+        return Response::json(['result'=> 'blah blah not found'], 200);
     }
 }
