@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Event\UseCases\AddEvent\Request;
+namespace App\Domain\Event\UseCases\Home\Request;
 
 interface HomeInputPort
 {
-    public function index(HomeRequestModel $model);
+    public function index();
 }

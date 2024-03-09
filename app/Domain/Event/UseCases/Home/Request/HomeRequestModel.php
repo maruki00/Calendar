@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Event\UseCases\AddEvent\Request;
+namespace App\Domain\Event\UseCases\Home\Request;
 
 class HomeRequestModel
 {
