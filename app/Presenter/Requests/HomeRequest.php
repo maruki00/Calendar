@@ -4,7 +4,7 @@ namespace App\Presenter\Requests;
 
 use Core\Requests\FormRequest;
 
-class MainRequest extends FormRequest
+class HomeRequest extends FormRequest
 {
 
     public final function authorized(): bool
