@@ -8,20 +8,24 @@ use App\Domain\Event\UseCases\AddEvent\Response\AddEventOutputPort;
 use App\Domain\Event\UseCases\Home\Request\HomeInputPort;
 use App\Domain\Event\UseCases\Home\Response\HomeOutputPort;
 use App\Persistense\Repositories\EventRepository;
-use App\Presentation\Middlewares\CoreMiddleware;
+
 use App\Presenter\Adaprters\Presenters\AddEventPresenter;
 use App\Presenter\Adaprters\Presenters\HomePresenter;
 use App\UseCase\AddEventInteractor;
 use App\UseCase\HomeInteractor;
 use Core\App;
 
-$app = new App;
+
 if (!function_exists('app')){
     function app(string $key){
         global $app;
+
         return $app->getItem($key);
     }
 }
+
+$app = new App;
+
 
 $app->bind(IEventRepository::class,  EventRepository::class);
 

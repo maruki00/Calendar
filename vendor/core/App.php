@@ -53,7 +53,12 @@ class App
 
     public function getItem(string $key):mixed
     {
+
         $retObj =  self::$Container[$key] ?? null;
+        if($retObj === null)
+        {
+            dd($retObj, $key);
+        }
         return match (gettype($retObj)){
             'string' => new self::$Container[$retObj] ?? new $retObj ?? null,
             'object'|'callable' => $retObj,
