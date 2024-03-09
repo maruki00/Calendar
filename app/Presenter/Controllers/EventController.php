@@ -30,7 +30,6 @@ class EventController extends Controller
             'created_at'    => 'created_at',
             'updated_at'    => 'updated_at',
         ];
-        $view =  $this->inputPort->add(new AddEventRequestModel($data));
-        return false;
+        return   $this->inputPort->add(new AddEventRequestModel($data));
     }
 }
