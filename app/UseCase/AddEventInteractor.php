@@ -9,6 +9,7 @@ use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
 use App\Domain\Event\UseCases\AddEvent\Request\AddEventRequestModel;
 use App\Domain\Event\UseCases\AddEvent\Response\AddEventOutputPort;
 use App\Domain\Shared\ViewModel;
+use App\Presenter\Adaprters\Presenters\AddEventPresenter;
 use function App\app;
 
 class AddEventInteractor implements AddEventInputPort
@@ -17,9 +18,8 @@ class AddEventInteractor implements AddEventInputPort
     private readonly AddEventOutputPort $outputPort;
     public function __construct()
     {
-        dd(app(IEventRepository::class), app(AddEventOutputPort::class));
-        $this->repository = dd(app(IEventRepository::class));
-        $this->outputPort = dd(app(AddEventOutputPort::class));
+        $this->repository = app(IEventRepository::class);
+        $this->outputPort = new AddEventPresenter();
     }
     public function add(AddEventRequestModel $model):ViewModel
     {

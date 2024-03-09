@@ -8,6 +8,8 @@
  */
 namespace Core;
 
+use App\Domain\Event\Contracts\IEventRepository;
+use App\Domain\Event\UseCases\AddEvent\Response\AddEventOutputPort;
 use Core\Controller\ErrorController;
 use Core\Exceptions\MainException;
 use Core\Http\Server;
@@ -23,7 +25,7 @@ use ReflectionMethod;
 class App
 {
 
-    protected static array $Container   = [];
+    public static array $Container   = [];
     protected static array $middlewares = [];
     protected static array $routes      = [];
     protected array $data;
@@ -55,13 +57,14 @@ class App
     {
 
         $retObj =  self::$Container[$key] ?? null;
-        if($retObj === null)
-        {
-            dd($retObj, $key);
-        }
-        return match (gettype($retObj)){
+
+//        if($key == AddEventOutputPort::class){
+//            dd($key ,self::$Container[$key], self::$Container);
+//        }
+
+        return  match (gettype($retObj)){
             'string' => new self::$Container[$retObj] ?? new $retObj ?? null,
-            'object'|'callable' => $retObj,
+            "callable", 'object' => $retObj,
             default => null
         };
     }

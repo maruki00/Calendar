@@ -1,6 +1,6 @@
 <?php
 
-
+ini_set('display_errors',true);
 use App\Controllers\MainController;
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once '../vendor/autoload.php';
@@ -11,7 +11,7 @@ set_exception_handler(function($err){
     dd($err);
 });
 
-ini_set('display_errors',true);
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
