@@ -8,10 +8,9 @@
  */
 namespace Core;
 
-use App\Domain\Event\Contracts\IEventRepository;
+use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
 use App\Domain\Event\UseCases\AddEvent\Response\AddEventOutputPort;
 use Core\Controller\ErrorController;
-use Core\Exceptions\MainException;
 use Core\Http\Server;
 use Core\Http\Url\UrlParam;
 use Core\Middleware\Middleware;
@@ -45,7 +44,7 @@ class App
     }
     public function bind(string $key, string|callable $value):void
     {
-        self::$Container[$key] = is_string($value) ? new $value : $value;
+        self::$Container[$key] =  $value;
     }
 
     public static function app(string $key):mixed
@@ -53,20 +52,16 @@ class App
         return self::$Container[$key];
     }
 
-    public function getItem(string $key):mixed
+    public function getContainerItem(string $key):mixed
     {
-
         $retObj =  self::$Container[$key] ?? null;
-
-//        if($key == AddEventOutputPort::class){
-//            dd($key ,self::$Container[$key], self::$Container);
-//        }
-
-        return  match (gettype($retObj)){
+        $data =   match (gettype($retObj)){
             'string' => new self::$Container[$retObj] ?? new $retObj ?? null,
-            "callable", 'object' => $retObj,
+            'object' => $retObj,
+            "callable" => $retObj,
             default => null
         };
+        return $data;
     }
 
 
@@ -129,7 +124,7 @@ class App
             $clsReflexion = new \ReflectionClass($currentRoute->getController());
 
             $constructParams = array_map(function($param){
-                return $this->getItem($param->getType()->getName()) ?? new ($param->getType()->getName()) ?? null;
+                return $this->getContainerItem($param->getType()->getName()) ?? new ($param->getType()->getName()) ?? null;
             }, $clsReflexion->getConstructor()->getParameters());
 
             $controllerCls  =  new $controller(...$constructParams);

@@ -19,8 +19,7 @@ use Core\App;
 if (!function_exists('app')){
     function app(string $key){
         global $app;
-
-        return $app->getItem($key);
+        return $app->getContainerItem($key);
     }
 }
 
@@ -36,5 +35,5 @@ $app->bind(AddEventOutputPort::class, AddEventPresenter::class);
 $app->bind(HomeInputPort::class,  HomeInteractor::class);
 $app->bind(HomeOutputPort::class, HomePresenter::class);
 
-dd(App::$Container);
+
 return $app;
