@@ -33,7 +33,7 @@ $app->bind(AddEventInputPort::class, AddEventInteractor::class);
 $app->bind(AddEventOutputPort::class, AddEventPresenter::class);
 
 
-$app->bind(HomeInputPort::class, HomeInteractor::class);
+$app->bind(HomeInputPort::class,  HomeInteractor::class);
 $app->bind(HomeOutputPort::class, HomePresenter::class);
 
 dd(App::$Container);
