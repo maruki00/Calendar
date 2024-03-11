@@ -56,7 +56,7 @@ class App
     {
         $retObj =  self::$Container[$key] ?? null;
         $data =   match (gettype($retObj)){
-            'string' => new self::$Container[$retObj] ?? new $retObj ?? null,
+            'string' => new self::$Container[$retObj]  ?? new $retObj ?? null,
             'object' => $retObj,
             "callable" => $retObj,
             default => null
