@@ -64,13 +64,11 @@ class App
         return $data;
     }
 
-
-
     private function getRequestUri():string
     {
         $uri = explode('#', Server::get('REQUEST_URI'))[0] ?? '/';
         $uri =  preg_replace('#(/(\.+)?)+#', '/', Server::get('REQUEST_URI'));
-        return $uri;
+        return empty($uri)?'/':$uri;
     }
 
     private function runMiddleware(Middleware $middleware, IRequest $request)
@@ -92,13 +90,13 @@ class App
             $action         = $currentRoute->getAction();
             $isCallback     = is_callable($currentRoute->getCallback());
             $request        = null;
-            dd($this->getRequestUri());
-            $reflection     = match($isCallback)
+            dd(self::$routes, $requestUri);
+            $reflection     = match(gettype($isCallback))
             {
                 true    => new \ReflectionFunction($currentRoute->getCallback()),
                 default => new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction()),
             };
-
+            dd(__LINE__);
             collect($reflection->getParameters())->map(function($parameter) use (&$urlParams, &$request){
                 if(is_subclass_of($parameter->getType()->getName(), FormRequest::class))
                 {
@@ -106,6 +104,7 @@ class App
                     $urlParams[$parameter->getName()]= $request;
                 }
             });
+            dd(__LINE__);
             $request = $request ?? new Request();
             collect($currentRoute->getMiddlwares())->map(function($item) use ($request){
                 $middleware = MiddlewareFactory::create($item);
@@ -114,8 +113,12 @@ class App
                 }
             });
 
+            dd(__LINE__);
+
+
             if(is_callable($currentRoute->getCallback()))
             {
+                dd(12345);
                 call_user_func($currentRoute->getCallback(),...$urlParams);
                 die;
             }
