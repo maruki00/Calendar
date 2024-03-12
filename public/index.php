@@ -4,11 +4,13 @@ ini_set('display_errors',true);
 use App\Controllers\MainController;
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once '../vendor/autoload.php';
-$app = require_once __DIR__.'/../app/Kernel.php';
 require_once __DIR__.'/../routes/api.php';
+$app = require_once __DIR__.'/../app/Kernel.php';
+
+
 
 set_exception_handler(function($err){
-    dd($err);
+    dd('global exception ...', $err);
 });
 
 

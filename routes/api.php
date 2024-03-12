@@ -10,3 +10,6 @@ Router::group(['prefix'=>'api/event'], function(){
     Router::get('/', [EventController::class, 'store']);
 });
 
+Router::get('/', function(){
+    dd(__FILE__);
+});

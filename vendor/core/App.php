@@ -92,6 +92,7 @@ class App
             $action         = $currentRoute->getAction();
             $isCallback     = is_callable($currentRoute->getCallback());
             $request        = null;
+            dd($this->getRequestUri());
             $reflection     = match($isCallback)
             {
                 true    => new \ReflectionFunction($currentRoute->getCallback()),
