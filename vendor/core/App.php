@@ -90,21 +90,21 @@ class App
             $action         = $currentRoute->getAction();
             $isCallback     = is_callable($currentRoute->getCallback());
             $request        = null;
-            dd(self::$routes, $requestUri);
-            $reflection     = match(gettype($isCallback))
-            {
-                true    => new \ReflectionFunction($currentRoute->getCallback()),
-                default => new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction()),
-            };
-            dd(__LINE__);
-            collect($reflection->getParameters())->map(function($parameter) use (&$urlParams, &$request){
+            $reflection = null;
+            if(is_callable($currentRoute->getCallback())){
+                $reflection     = new \ReflectionFunction($currentRoute->getCallback());
+            }else if ($currentRoute->getController() && $currentRoute->getAction()){
+                $reflection     = new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction());
+            }
+
+            collect($reflection?->getParameters())->map(function($parameter) use (&$urlParams, &$request){
                 if(is_subclass_of($parameter->getType()->getName(), FormRequest::class))
                 {
                     $request = new ($parameter->getType()->getName());
                     $urlParams[$parameter->getName()]= $request;
                 }
             });
-            dd(__LINE__);
+
             $request = $request ?? new Request();
             collect($currentRoute->getMiddlwares())->map(function($item) use ($request){
                 $middleware = MiddlewareFactory::create($item);
@@ -112,8 +112,6 @@ class App
                     throw new \Exception("Invalid Middleware or Middleware Not Found");
                 }
             });
-
-            dd(__LINE__);
 
 
             if(is_callable($currentRoute->getCallback()))
