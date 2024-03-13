@@ -8,8 +8,6 @@
  */
 namespace Core;
 
-use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
-use App\Domain\Event\UseCases\AddEvent\Response\AddEventOutputPort;
 use Core\Controller\ErrorController;
 use Core\Http\Server;
 use Core\Http\Url\UrlParam;
@@ -116,7 +114,7 @@ class App
 
             if(is_callable($currentRoute->getCallback()))
             {
-                dd(12345);
+                
                 call_user_func($currentRoute->getCallback(),...$urlParams);
                 die;
             }

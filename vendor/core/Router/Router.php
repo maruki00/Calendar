@@ -26,6 +26,7 @@ class Router extends App
 
     public static final function group(array $subData, callable $callback){
         self::$prefix .= $subData['prefix'] ?? '';
+
         self::$middlewares = [ ...self::$middlewares, ...$subData['middlewares'] ?? []];
         $callback();
     }
