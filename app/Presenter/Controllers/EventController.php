@@ -5,6 +5,7 @@ namespace App\Presenter\Controllers;
 
 use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
 use App\Domain\Event\UseCases\AddEvent\Request\AddEventRequestModel;
+use App\Presentation\Requests\AddEventRequest;
 use App\Presenter\Requests\MainRequest;
 use Core\Controller\Controller;
 
@@ -17,7 +18,7 @@ class EventController extends Controller
     {
     }
 
-    public final function store(MainRequest $request):bool|string
+    public final function store(AddEventRequest $request):mixed
     {
         $data = [
             'id'            => 1,
