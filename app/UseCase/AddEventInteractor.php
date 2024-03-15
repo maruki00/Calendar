@@ -21,11 +21,12 @@ class AddEventInteractor implements AddEventInputPort
     private readonly AddEventOutputPort $outputPort;
     public function __construct()
     {
-        $this->repository = app(IEventRepository::class);
-        $this->outputPort = app(AddEventOutputPort::class);
+        $this->repository = new EventRepository();
+        $this->outputPort = new AddEventPresenter();
     }
     public function add(AddEventRequestModel $model):ViewModel
     {
+        
         try{
             // $result  =  $this->repository->create([
             //     'id'            => $model->getId(),

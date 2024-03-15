@@ -3,19 +3,22 @@
 
 namespace App\Presenter\Controllers;
 
+use AddressInfo;
 use App\Domain\Event\UseCases\AddEvent\Request\AddEventInputPort;
 use App\Domain\Event\UseCases\AddEvent\Request\AddEventRequestModel;
 use App\Presentation\Requests\AddEventRequest;
 use App\Presenter\Requests\MainRequest;
+use App\UseCase\AddEventInteractor;
 use Core\Controller\Controller;
 
 
 
 class EventController extends Controller
 {
-
-    public function __construct(private readonly AddEventInputPort $inputPort)
+    private readonly AddEventInputPort $inputPort;
+    public function __construct()
     {
+        $this->inputPort = new AddEventInteractor();
     }
 
     public final function store(AddEventRequest $request):mixed
