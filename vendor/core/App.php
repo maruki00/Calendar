@@ -8,6 +8,7 @@
  */
 namespace Core;
 
+use App\Presentation\Requests\AddEventRequest;
 use Core\Controller\ErrorController;
 use Core\Http\Server;
 use Core\Http\Url\UrlParam;
@@ -96,9 +97,14 @@ class App
                 $reflection     = new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction());
             }
 
+
+            dd(is_subclass_of(new (AddEventRequest::class), FormRequest::class));
             collect($reflection?->getParameters())->map(function($parameter) use (&$urlParams, &$request){
+                dd($parameter->getType()->getName(), is_subclass_of($parameter->getType()->getName(), FormRequest::class));
+
                 if(is_subclass_of($parameter->getType()->getName(), FormRequest::class))
                 {
+                    dd(__LINE__);
                     $request = new ($parameter->getType()->getName());
                     $urlParams[$parameter->getName()]= $request;
                 }

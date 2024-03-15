@@ -16,7 +16,7 @@ class AddEventRequest extends FormRequest
     public function validate(): array
     {
         return [
-            'name' => 'required|'
+            'name' => 'required'
         ];
     }
 
