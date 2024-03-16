@@ -1,5 +1,6 @@
 <?php
 
+$start = microtime(1);
 ini_set('display_errors',true);
 use App\Controllers\MainController;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -35,6 +36,8 @@ $capsule->bootEloquent();
 
 try {
     $app->run();
+    $end = microtime(1);
+    dd($end, $start, (int)ceil(($end-$start)*1_000));
 } catch (Exception $e) {
     dd('Exception ....', $e->getMessage());
 }

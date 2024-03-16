@@ -23,6 +23,7 @@ class EventController extends Controller
 
     public final function store():mixed
     {
+        return false;
         $data = [
             'id'            => 1,
             'title'         => 'title',

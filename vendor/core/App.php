@@ -80,7 +80,7 @@ class App
     /**
      * @throws \Exception
      */
-    public final function run():void
+    public final function run():mixed
     {
         try{
             $requestUri     = $this->getRequestUri();
@@ -135,8 +135,7 @@ class App
             
             $controllerCls  =  new $controller(...$constructParams);
             $response       = $controllerCls->{$action}(...$urlParams);
-            echo $response;
-            die;
+            return $response;
         }catch (\Exception $er)
         {
             throw new \Exception($er->getMessage());
