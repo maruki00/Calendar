@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Presentation\Requests\AddEventRequest;
 namespace App\Presentation\Requests;
 
 use Core\Requests\FormRequest;

@@ -21,7 +21,7 @@ class EventController extends Controller
         $this->inputPort = new AddEventInteractor();
     }
 
-    public final function store(AddEventRequest $request):mixed
+    public final function store():mixed
     {
         $data = [
             'id'            => 1,

@@ -97,14 +97,11 @@ class App
                 $reflection     = new ReflectionMethod($currentRoute->getController(), $currentRoute->getAction());
             }
 
-
-            dd(is_subclass_of(new (AddEventRequest::class), FormRequest::class));
             collect($reflection?->getParameters())->map(function($parameter) use (&$urlParams, &$request){
                 dd($parameter->getType()->getName(), is_subclass_of($parameter->getType()->getName(), FormRequest::class));
 
                 if(is_subclass_of($parameter->getType()->getName(), FormRequest::class))
                 {
-                    dd(__LINE__);
                     $request = new ($parameter->getType()->getName());
                     $urlParams[$parameter->getName()]= $request;
                 }
@@ -135,7 +132,7 @@ class App
             $constructParams = array_map(function($param){
                 return $this->getContainerItem($param->getType()->getName()) ?? new ($param->getType()->getName()) ?? null;
             }, $clsReflexion->getConstructor()->getParameters());
-
+            
             $controllerCls  =  new $controller(...$constructParams);
             $response       = $controllerCls->{$action}(...$urlParams);
             echo $response;
