@@ -28,21 +28,20 @@ class AddEventInteractor implements AddEventInputPort
     {
         
         try{
-            // $result  =  $this->repository->create([
-            //     'id'            => $model->getId(),
-            //     'title'         => $model->getTitle(),
-            //     'start_data'    => $model->getStartData(),
-            //     'end_ate'       => $model->getEndAt(),
-            //     'bg_color'      => $model->getBgColor(),
-            //     'border_color'  => $model->getBorderColor(),
-            //     'every_day'     => $model->getEveryDay(),
-            //     'created_at'    => $model->getCreatedAt(),
-            //     'updated_at'    => $model->getUpdatedAt(),
-            // ]);
-            // return $this->outputPort->success('Success');
-            return new JsonViewModel('', 123);
-        }catch(\Exception){
-            return $this->outputPort->error('Error');
+            
+            $result  =  $this->repository->create([
+                'title'         => $model->getTitle(),
+                'start_data'    => $model->getStartData(),
+                'end_ate'       => $model->getEndAt(),
+                'bg_color'      => $model->getBgColor(),
+                'border_color'  => $model->getBorderColor(),
+                'every_day'     => $model->getEveryDay(),
+                'created_at'    => $model->getCreatedAt(),
+                'updated_at'    => $model->getUpdatedAt(),
+            ]);
+            return $this->outputPort->success('Success');
+        }catch(\Exception $er){
+            return $this->outputPort->error($er->getMessage());
         }
     }
 }

@@ -26,13 +26,13 @@ class EventController extends Controller
         $data = [
             'id'            => 1,
             'title'         => 'title',
-            'start_data'    => '2024-03-04',
-            'end_ate'       => '2024-04-04',
+            'start_data'    => date('Y-m-d'),
+            'end_ate'       => date('Y-m-d'),
             'bg_color'      => 'bg_color',
             'border_color'  => 'border_color',
             'every_day'     => false,
-            'created_at'    => 'created_at',
-            'updated_at'    => 'updated_at',
+            'created_at'    => date('Y-m-d'),
+            'updated_at'    => date('Y-m-d'),
         ];
         return   $this->inputPort->add(new AddEventRequestModel($data));
     }

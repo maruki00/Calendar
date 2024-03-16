@@ -21,7 +21,7 @@ class HomeController extends Controller
         $this->inputPort = new HomeInteractor();
     }
 
-    public final function index(HomeRequest $request):bool|string
+    public final function index():bool|string
     {
         $data = [
             'id'            => 1,

@@ -18,6 +18,6 @@ class JsonViewModel implements ViewModel
 
     public final function __toString()
     {
-        echo $this->getResponse();
+        return $this->getResponse();
     }
 }
